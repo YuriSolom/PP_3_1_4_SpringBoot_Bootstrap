@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+
+    <title>All Users</title>
+</head>
+<body style="background-color: #f3f3f3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="text-white">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <form th:action="@{/logout}" th:method="POST">
+                <div class="text-right">
+                    <input class="btn btn-link text-secondary" type="submit" value="Logout"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-2 bg-white pt-3 min-vh-100 px-0">
+            <ul class="nav flex-column nav-pills ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">User</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="col-md-10 pt-3 px-4" >
+            <h1>Admin panel</h1>
+            <div class="container-fluid px-1 pt-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/admin">Users table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/add_new_user">New User</a>
+                    </li>
+                </ul>
+
+                <div class="card border py-0 px-0">
+                    <div class="card-header px-3">
+                        <h4>All Users</h4>
+
+                    </div>
+                    <div class="modal-body text-center font-weight-bold" style=" width: 500px ;margin: auto ">
+                        <form action="#" th:action="@{/admin/save_user}" th:object="${newUser}" method="post">
+                            <div class="form-group">
+                                <label for="firstName" class="col-form-label">First Name</label>
+                                <input style=background-color:khaki type="text" class="form-control" id="firstName" name="firstName" required  />
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="col-form-label">Last Name</label>
+                                <input style=background-color:khaki type="text" class="form-control" id="lastName" name="lastName" required  />
+                            </div>
+                            <div class="form-group">
+                                <label for="age" class="col-form-label">Age</label>
+                                <input type="number" class="form-control" id="age" name="age" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">Email</label>
+                                <input style=background-color:khaki type="email" class="form-control" id="email" name="email" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username" class="col-form-label">Username</label>
+                                <input style=background-color:khaki type="text" class="form-control" id="username" name="username" required autocomplete="new-username" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required autocomplete="new-password" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="roles">Role</label>
+                                <select multiple class="form-control" id="roles" size="2"
+                                        name="roles" required>
+                                    <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name.replace('ROLE_','')}"></option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg">Add new user
+                            </button>
+                        </form>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

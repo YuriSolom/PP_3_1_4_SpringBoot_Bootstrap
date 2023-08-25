@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+
+    <!--навбар-->
+    <title>All Users</title>
+</head>
+<body style="background-color: #f3f3f3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="text-light">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <form th:action="@{/logout}" th:method="post">
+                <div class="text-right">
+                    <p class="text-light">
+                        <input class="btn btn-link text-secondary" type="submit" value="Logout"/>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!--кнопки слева-->
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-lg-2 bg-white pt-3 min-vh-100 px-0">
+            <ul class="nav flex-column nav-pills ">
+                <li class="nav-item">
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link" aria-current="page" href="admin">Admin</a>
+                        <form th:method="get" th:action="@{/admin}">
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/user">User</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 pt-3 px-4" >
+            <h1>User information-page</h1>
+            <div class="container-fluid px-1 pt-4">
+                <div class="card border py-0 px-0">
+                    <div class="card-header px-3">
+                        <h4>All Users</h4>
+                    </div>
+                    <div class="container-fluid border bg-white py-3 px-3">
+                        <table class="table table-striped border-top">
+                            <thead>
+                            <th scope="col">ID</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            </thead>
+                            <tbody>
+                            <tr th:object="${allUsers}">
+                                <td th:utext="${user.id}"></td>
+                                <td th:utext="${user.firstName}"></td>
+                                <td th:utext="${user.lastName}"></td>
+                                <td th:utext="${user.age}"></td>
+                                <td th:utext="${user.email}"></td>
+                                <td th:utext="${user.userRoles()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        type="text/javascript"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<script crossorigin="anonymous" src="../static/main.js" th:src="@{main.js}"
+        type="text/javascript"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+
+    <!--навбар-->
+    <title>All Users</title>
+</head>
+<body style="background-color: #f3f3f3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="text-light">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <form th:action="@{/logout}" th:method="post">
+                <div class="text-right">
+                    <p class="text-light">
+                        <input class="btn btn-link text-secondary" type="submit" value="Logout"/>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!--кнопки слева-->
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-lg-2 bg-white pt-3 min-vh-100 px-0">
+            <ul class="nav flex-column nav-pills ">
+                <li class="nav-item">
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link" aria-current="page" href="admin">Admin</a>
+                        <form th:method="get" th:action="@{/admin}">
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/user">User</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 pt-3 px-4" >
+            <h1>User information-page</h1>
+            <div class="container-fluid px-1 pt-4">
+                <div class="card border py-0 px-0">
+                    <div class="card-header px-3">
+                        <h4>All Users</h4>
+                    </div>
+                    <div class="container-fluid border bg-white py-3 px-3">
+                        <table class="table table-striped border-top">
+                            <thead>
+                            <th scope="col">ID</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            </thead>
+                            <tbody>
+                            <tr th:object="${allUsers}">
+                                <td th:utext="${user.id}"></td>
+                                <td th:utext="${user.firstName}"></td>
+                                <td th:utext="${user.lastName}"></td>
+                                <td th:utext="${user.age}"></td>
+                                <td th:utext="${user.email}"></td>
+                                <td th:utext="${user.userRoles()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        type="text/javascript"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<script crossorigin="anonymous" src="../static/main.js" th:src="@{main.js}"
+        type="text/javascript"></script>
+</body>
+</html>
