@@ -138,7 +138,7 @@ public class User implements UserDetails {
         return roles.toString();
     }
 
-    public void setRoles(Role role) {
+    public void setRole(Role role) {
         if (this.roles == null) {
             this.roles = new LinkedHashSet<>();
         }
