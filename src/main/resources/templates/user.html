@@ -6,13 +6,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
     <!-- Bootstrap CSS -->
     <link crossorigin="anonymous"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           rel="stylesheet">
-
     <!--навбар-->
     <title>All Users</title>
 </head>
@@ -22,8 +20,9 @@
         <div class="navbar-header">
             <div class="text-light">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
-                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5></li>
+                    <li class="list-inline-item"><h5 th:text="${#authentication.name}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' +
+                    ${#strings.arrayJoin(#authentication.authorities.![authority.replace('ROLE_', '')], ', ') }"></h5></li>
                 </ul>
             </div>
         </div>
@@ -38,7 +37,6 @@
         </div>
     </div>
 </nav>
-
 <!--кнопки слева-->
 <div class="container-fluid ">
     <div class="row">
@@ -90,7 +88,6 @@
         </div>
     </div>
 </div>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -112,13 +109,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
     <!-- Bootstrap CSS -->
     <link crossorigin="anonymous"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           rel="stylesheet">
-
     <!--навбар-->
     <title>All Users</title>
 </head>
@@ -128,8 +123,9 @@
         <div class="navbar-header">
             <div class="text-light">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
-                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5></li>
+                    <li class="list-inline-item"><h5 th:text="${#authentication.name}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' +
+                    ${#strings.arrayJoin(#authentication.authorities.![authority.replace('ROLE_', '')], ', ') }"></h5></li>
                 </ul>
             </div>
         </div>

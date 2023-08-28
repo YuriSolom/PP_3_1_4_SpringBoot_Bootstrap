@@ -6,13 +6,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
     <!-- Bootstrap CSS -->
     <link crossorigin="anonymous"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           rel="stylesheet">
-
     <!--навбар-->
     <title>All Users</title>
 </head>
@@ -22,9 +20,9 @@
         <div class="navbar-header">
             <div class="text-light">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><h5 th:text="${user.getEmail()}"></h5></li>
-                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' + ${user.userRoles()}"></h5>
-                    </li>
+                    <li class="list-inline-item"><h5 th:text="${#authentication.name}"></h5></li>
+                    <li class="list-inline-item"><h5 class="lead" th:text="' with roles: ' +
+                    ${#strings.arrayJoin(#authentication.authorities.![authority.replace('ROLE_', '')], ', ') }"></h5></li>
                 </ul>
             </div>
         </div>
@@ -71,11 +69,8 @@
                     <div class="card-header px-3">
                         <h4>All Users</h4>
                     </div>
-
                     <div class="container-fluid border bg-white py-3 px-3">
-
                         <table class="table table-striped border-top">
-
                             <thead>
                             <th scope="col">ID</th>
                             <th scope="col">FirstName</th>
@@ -86,7 +81,6 @@
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                             </thead>
-
                             <tbody>
                             <tr th:each="user : ${allUsers}">
                                 <td th:utext="${user.id}"></td>
