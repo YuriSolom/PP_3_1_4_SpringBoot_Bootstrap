@@ -1,11 +1,9 @@
 package ru.kata.spring.boot_security.demo.entity;
 
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
